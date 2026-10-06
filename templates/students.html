@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Students</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+</head>
+<body>
+    <h1>Student Data </h1>
+    <p>Current Role: {{ request.session.get("role") }}</p>
+     {%if request.session["role"] == "Admin"%}
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" required>
+            <button type="submit">Upload Excel</button>
+        </form>
+        <br>
+    <a href="/add">Add Student</a>
+    <br><br>
+    {% endif %}
+    <table border="1" style="width: 70%; margin: 30px auto; background: rgb(125, 168, 224);">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Course</th>
+    {% if request.session["role"] == "Admin" %}
+            <th>Actions</th>
+    {% endif %}
+        </tr>
+        {% for student in students %}
+        <tr>
+            <td>{{ student.ID }}</td>
+            <td>{{ student.Name }}</td>
+            <td>{{ student.Course }}</td>
+        {% if request.session["role"] == "Admin" %}
+            <td>
+                <a href="/edit/{{ student.ID }}">Edit</a>
+                <a href="/delete/{{ student.ID }}">Delete</a>
+            </td>
+        {% endif %}
+        </tr>
+        {% endfor %}
+        
+    </table>
+    <br>
+    <a href="/">Back to Home</a>
+</body>
+</html>

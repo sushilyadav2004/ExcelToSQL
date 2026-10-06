@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Student Data Application</title>
+        <link rel="stylesheet"href="static/style.css">
+        <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    </head>
+    <body>
+        <h1>Student Data import</h1>
+      <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".xlsx">
+        <button type="submit">Upload</button>
+        <br><br>
+        <a href="/students">
+        <button type="button">view students</button>
+        </a>
+        <a href="/add">
+          <button type="button">Add Student</button>
+      </form>
+    </body>
+</html>
